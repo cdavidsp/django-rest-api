@@ -2,7 +2,7 @@ name: Zappa Django deployement
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   deploy-django-serverless:
     runs-on: ubuntu-18.04
