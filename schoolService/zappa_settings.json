@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "aws_region": "eu-west-1",
+        "django_settings": "schoolService.settings",
+        "profile_name": "default",
+        "project_name": "schoolservice",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-ibkxo5ig9",
+        "certificate_arn": "arn:aws:acm:us-east-1:578010336020:certificate/51fd1ffe-7a5d-4546-8b3d-86d6c9c02632",
+        "domain": "api.andrea-lab.com"
+    }
+}
