@@ -34,4 +34,5 @@ jobs:
       - name: Update Django application using zappa
         run: |
           . env/bin/activate
+          aws s3 ls
           zappa update dev
