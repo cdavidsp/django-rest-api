@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Test
+
+from api.models import FoodEntry
 
 
-class TestSerializer(serializers.ModelSerializer):
+class FoodEntrySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Test
-        fields = ('id', 'first_name', 'last_name')
+        model = FoodEntry
+        fields = ('id', 'product', 'calories', 'created_date')
