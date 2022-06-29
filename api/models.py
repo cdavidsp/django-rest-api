@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class FoodEntry(models.Model):
@@ -9,6 +10,7 @@ class FoodEntry(models.Model):
     product = models.CharField(max_length=255)
     calories = models.PositiveIntegerField()
     created_date = models.DateTimeField()
+    user_id = models.ForeignKey(User, related_name='FoodEntry_assigned_to', default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.product

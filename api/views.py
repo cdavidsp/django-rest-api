@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
 from .models import FoodEntry
 from .serializers import FoodEntrySerializer
 
@@ -21,7 +23,17 @@ class FoodEntryFilter(filters.FilterSet):
 class FoodEntryListView(generics.ListCreateAPIView):
     """List of all entries """
 
-    queryset = FoodEntry.objects.all()
+    def get_queryset(self):
+        """
+        Check if the user is admin to show all entries
+        """
+        user = self.request.user
+        if user.is_staff:
+            return FoodEntry.objects.all()
+        else:
+            return FoodEntry.objects.filter(assigned_to=user)
+
+    permission_classes = (IsAuthenticated,)
     serializer_class = FoodEntrySerializer
     # pagination_class = ProductsPagination
     filter_backends = [DjangoFilterBackend]
@@ -29,5 +41,16 @@ class FoodEntryListView(generics.ListCreateAPIView):
 
 
 class FoodEntryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = FoodEntry.objects.all()
+
+    permission_classes = (IsAuthenticated,)
     serializer_class = FoodEntrySerializer
+
+    def get_queryset(self):
+        """
+        Check if the user is admin to show all entries
+        """
+        user = self.request.user
+        if user.is_staff:
+            return FoodEntry.objects.all()
+        else:
+            return FoodEntry.objects.filter(assigned_to=user)
