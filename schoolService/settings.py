@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_(cw=_z*g)c11ir*bzw)wx-eyvi2duue%y9m_n4!9dj78(f646
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["cp84y9i83d.execute-api.eu-west-1.amazonaws.com", "api.andrea-lab.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["cp84y9i83d.execute-api.eu-west-1.amazonaws.com", "api.andrea-lab.com", "127.0.0.1", "a8e1-90-167-202-142.eu.ngrok.io"]
 
 # Application definition
 

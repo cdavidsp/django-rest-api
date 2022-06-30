@@ -9,8 +9,8 @@ class FoodEntry(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     product = models.CharField(max_length=255)
     calories = models.PositiveIntegerField()
-    created_date = models.DateTimeField()
-    user_id = models.ForeignKey(User, related_name='FoodEntry_assigned_to', default=1, on_delete=models.CASCADE)
+    entry_date = models.DateTimeField()
+    user_id = models.ForeignKey(User, related_name='FoodEntry_user', default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.product

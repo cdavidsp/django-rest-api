@@ -12,8 +12,8 @@ from django_filters import rest_framework as filters, DateFilter
 
 
 class FoodEntryFilter(filters.FilterSet):
-    start_date = DateFilter(field_name='created_date', lookup_expr=('gt'), )
-    end_date = DateFilter(field_name='created_date', lookup_expr=('lt'))
+    start_date = DateFilter(field_name='entry_date', lookup_expr=('gte'), )
+    end_date = DateFilter(field_name='entry_date', lookup_expr=('lte'))
 
     class Meta:
         model = FoodEntry
@@ -31,7 +31,7 @@ class FoodEntryListView(generics.ListCreateAPIView):
         if user.is_staff:
             return FoodEntry.objects.all()
         else:
-            return FoodEntry.objects.filter(assigned_to=user)
+            return FoodEntry.objects.filter(user_id=user)
 
     permission_classes = (IsAuthenticated,)
     serializer_class = FoodEntrySerializer
@@ -53,4 +53,4 @@ class FoodEntryDetail(generics.RetrieveUpdateDestroyAPIView):
         if user.is_staff:
             return FoodEntry.objects.all()
         else:
-            return FoodEntry.objects.filter(assigned_to=user)
+            return FoodEntry.objects.filter(user_id=user)
